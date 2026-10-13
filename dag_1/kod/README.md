@@ -11,9 +11,23 @@
 
 Kör från kursens rotmapp. Skapa miljön första gången:
 
+Linux:
 ```bash
-python3 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
+python -m pip install -r dag_1/kod/python/requirements.txt
+```
+
+Windows:
+```Power Shell
+python -m venv .venv
+.venv\bin\activate.ps1
+python -m pip install -r dag_1/kod/python/requirements.txt
+```
+
+```cmd.exe
+python -m venv .venv
+.venv\bin\activate.bat
 python -m pip install -r dag_1/kod/python/requirements.txt
 ```
 
