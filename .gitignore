@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Mina tillägg
+*.md
+!README.md
+!Övningar.md
+*.pdf
+*.zip
+*.csv
