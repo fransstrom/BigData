@@ -19,6 +19,9 @@ python -m pip install -r dag_1/kod/python/requirements.txt
 ```
 
 Windows:
+
+Ni kan behöva tillåta scripts i Power Shell för att det ska fungera.
+
 ```Power Shell
 python -m venv .venv
 .venv\bin\activate.ps1
