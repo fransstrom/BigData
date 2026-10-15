@@ -3,6 +3,7 @@
 ## Innehåll
 
 - `python/analyze_iot.py` behandlar AI4I, skapar features, sammanfattningar och diagram.
+- `python/README.md` förklarar `analyze_iot.py` steg för steg.
 - `python/download_data.py` hämtar dagens datafil från UCI.
 - `data/` innehåller information om datasetet. CSV-filen ingår inte i studentpaketet.
 - `output/` tar emot genererade filer.
