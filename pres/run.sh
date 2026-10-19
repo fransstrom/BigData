@@ -1,3 +1,3 @@
 #!/bin/bash
-python3 ./kod/python/analyze_iot.py ./kod/data/ai4i2020.csv
+python3 ./kod/python/pres.py ./kod/data/ai4i2020.csv
 
