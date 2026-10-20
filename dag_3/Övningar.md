@@ -5,10 +5,15 @@
 Klassificera varje fall som regression, klassificering, anomalidetektion eller klustring:
 
 1. Förutsäg energianvändning i wattimmar.
+    Regression
 2. Hitta driftmönster utan färdiga etiketter.
+    Klustring
 3. Avgör om en AI4I-observation innebär maskinfel.
+    klassificering
 4. Hitta ovanliga kombinationer av temperatur, varvtal och vridmoment.
+    anomalidetektion
 5. Uppskatta återstående verktygslivslängd i minuter.
+    regression
 
 ## Laboration – Klassificera maskinfel
 
