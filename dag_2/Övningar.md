@@ -7,8 +7,12 @@ AI4I har 10 000 rader. Anta att samma schema används för 100 miljoner observat
 Besvara:
 
 1. Vilka kolumner behövs för din fråga?
+    Vi kollar machine failure och kvalitet relaterat till vridmoment och rotationshastighet så vi behöver:
+    torque_nm, rotational_speed_rpm, machine_failure och type
 2. Vilka kolumner kan läsas bort tidigt?
+    Identifierare produktId och UDI. De olika typer av maskinfel, temp etc.
 3. Hur skulle data kunna partitioneras?
+    Tex efter produktkvalitet (type)
 4. Vilka sammanfattningar kan beräknas i förväg?
 5. När räcker en starkare dator?
 6. När kan distribuerad behandling behövas?
