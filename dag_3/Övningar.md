@@ -29,11 +29,17 @@ python dag_3/kod/python/train_model.py dag_3/kod/output/ai4i_clean.csv
 Öppna `model_metrics.json` och besvara:
 
 1. Hur stor är felklassen i testdatan?
+    test_failure_rate=3.4%    
 2. Varför har baslinjen hög accuracy men recall 0?
+    baslinjen gissar alltid normal drift. Eftersom de flesta observationerna är normal drift får den hög accuracy. men missar alla 85 verkliga maskinfel. så recall blir 0/85 = 0%
 3. Hur många verkliga fel hittar modellen?
+    69
 4. Hur många falska larm skapar modellen?
+    340   
 5. Vilket är viktigast här: precision eller recall?
+    Jag prioriterar recall för maskinfel eftersom jag vill hitta så många verkliga fel som möjligt. Hög accuracy kan vara missvisande när normal drift är mycket vanligare än maskinfel.
 6. När kan en enkel regel vara bättre än modellen?
+    Vid enklare featurevärden där ett värde kan vara en anledning till att stoppa/varna för fel. tex temp > 200
 
 ## Undersök modellen i Python
 

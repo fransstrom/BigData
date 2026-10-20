@@ -67,12 +67,25 @@ def main() -> None:
     model.fit(x_train, y_train)
     baseline.fit(x_train, y_train)
 
+    # Kontrollera och förtydliga vilka typer vi förväntar oss.
+    assert isinstance(x_train, pd.DataFrame)
+    assert isinstance(x_test, pd.DataFrame)
+    assert isinstance(y_train, pd.Series)
+    assert isinstance(y_test, pd.Series)
+
+    # Larma om både slitaget och vridmomentet är höga.
+    rule_predictions = (
+        (x_test["tool_wear_min"] >= 150)
+        & (x_test["torque_nm"].between(40, 80))
+    ).astype(int)
+
     result = {
         "train_rows": len(x_train),
         "test_rows": len(x_test),
         "test_failure_rate": float(y_test.mean()),
         "model": metrics(y_test, model.predict(x_test)),
         "baseline": metrics(y_test, baseline.predict(x_test)),
+        "rule_pred": metrics(y_test, rule_predictions),
         "note": "Feltypskolumnerna TWF/HDF/PWF/OSF/RNF används inte eftersom de läcker målet.",
     }
 
