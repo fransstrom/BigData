@@ -31,7 +31,7 @@ RENAME = {
 def main() -> None:
     # Läs in filnamnet från terminalen. --output kan ändra var resultaten sparas.
     parser = argparse.ArgumentParser()
-    parser.add_argument("input", type=Path)
+    parser.add_argument("--input", type=Path, default=CODE_DIR / "data/ai4i2020.csv")
     parser.add_argument("--output", type=Path, default=CODE_DIR / "output")
     args = parser.parse_args()
 
@@ -95,12 +95,12 @@ def main() -> None:
 
     # Skapa resultatmappen och spara tabeller som kan användas i presentationen.
     args.output.mkdir(parents=True, exist_ok=True)
-    clean.to_csv(args.output / "ai4i_clean.csv", index=False)
-    summary.to_csv(args.output / "summary_machine_failure_by_torque_and_tool_wear.csv")
-    failures.to_csv(args.output / "machine_failures.csv", index=False)
+    clean.to_csv(args.output / "pres_ai4i_clean.csv", index=False)
+    summary.to_csv(args.output / "pres_summary_machine_failure_by_torque_and_tool_wear.csv")
+    failures.to_csv(args.output / "pres_machine_failures.csv", index=False)
 
     # JSON sparar kvalitetsrapportens namn och värden i ett läsbart format.
-    (args.output / "quality_report.json").write_text(
+    (args.output / "pres_quality_report.json").write_text(
         json.dumps(quality, indent=2) + "\n", encoding="utf-8"
     )
 
@@ -128,7 +128,7 @@ def main() -> None:
 
     # Anpassa marginalerna och spara diagrammet som en PNG-bild.
     fig.tight_layout()
-    fig.savefig(args.output / "ai4i_overview.png", dpi=160)
+    fig.savefig(args.output / "pres_ai4i_overview.png", dpi=160)
 
     print(json.dumps(quality, indent=2))
 

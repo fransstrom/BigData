@@ -30,7 +30,7 @@ RENAME = {
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("input", type=Path)
+    parser.add_argument("--input", type=Path, default=CODE_DIR / "data/ai4i2020.csv")
     parser.add_argument("--output", type=Path, default=CODE_DIR / "output")
     args = parser.parse_args()
 
