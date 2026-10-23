@@ -13,10 +13,10 @@ Kör kommandona från projektroten (`BigData`) med din virtuella Pythonmiljö ak
 ```bash
 python -m pip install -r pres/kod/python/requirements.txt
 python pres/kod/python/download_data.py
-python pres/kod/python/pres.py pres/kod/data/ai4i2020.csv
+python pres/kod/python/pres.py --input pres/kod/data/ai4i2020.csv
 ```
 
-Analysen sparar rensad data i `pres/kod/output/ai4i_clean.csv`, en gruppjämförelse
+Analysen sparar rensad data i `pres/kod/output/pres_ai4i_clean.csv`, en gruppjämförelse
 och ett diagram. Gruppjämförelsen används för att besvara frågeställningen.
 
 ## Träna och spara modellen
@@ -26,7 +26,7 @@ python pres/kod/python/train_iot.py
 ```
 
 Skriptet läser den rensade datan och använder endast verktygsslitage och vridmoment
-för att klassificera maskinfel. Ett beslutsträd med högst tre nivåer tränas på 80 %
+för att klassificera maskinfel. Ett beslutsträd med maximalt djup 3 tränas på 80 %
 av datan. Resterande 20 % används för utvärdering. Uppdelningen är stratifierad
 och reproducerbar med `random_state=42`. Trädet kräver minst tio observationer
 per löv och använder balanserade klassvikter eftersom maskinfel är ovanliga.
@@ -43,7 +43,7 @@ mellan 0 och 1. `correct_normal` räknar korrekt förutsagd normal drift och
 `correct_predictions` räknar alla korrekta förutsägelser.
 
 Varje körning tränar på nytt och ersätter modell- och resultatfilen.
-En annan rensad CSV kan anges som positionsargument och en annan resultatmapp
+En annan rensad CSV kan anges med `--input` och en annan resultatmapp
 med `--output`. Modellen kompletterar gruppanalysen med förutsägelser.
 
 ## Använd modellen med egna värden
@@ -58,5 +58,5 @@ Skriptet laddar modellen och skriver ut `Förutsägelse: normal drift` eller
 Du kan välja en annan modellfil med `--model sökväg/till/model.joblib`.
 
 Använd samma paketversioner vid träning och prediktion och ladda bara modellfiler
-du litar på. Träning och prediktion körs separat; `pres/run.sh` kör fortsatt bara
-nedladdning och analys.
+du litar på. `pres/run.sh` kör nedladdning, analys och träning. Kör det från `pres/`
+med `bash run.sh`. Prediktionen körs separat.

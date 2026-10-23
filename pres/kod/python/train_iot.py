@@ -38,7 +38,7 @@ def metrics(y_true: pd.Series, prediction) -> dict[str, float | int]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "input", type=Path, nargs="?", default=CODE_DIR / "output/ai4i_clean.csv",
+        "--input", type=Path, nargs="?", default=CODE_DIR / "output/pres_ai4i_clean.csv",
         help="Rensad CSV från pres.py.",
     )
     parser.add_argument("--output", type=Path, default=CODE_DIR / "output")
@@ -71,6 +71,11 @@ def main() -> None:
     assert isinstance(y_train, pd.Series)
     assert isinstance(y_test, pd.Series)
 
+    rule_predictions = (
+          (x_test["tool_wear_min"] >= 180)
+          | (x_test["torque_nm"] >= 60)
+      ).astype(int)
+
 
     # Baslinjen förutsäger alltid normal drift på samma testdata.
     baseline = DummyClassifier(strategy="constant", constant=0)
@@ -82,6 +87,7 @@ def main() -> None:
         "test_failure_rate": float(y_test.mean()),
         "model": metrics(y_test, model.predict(x_test)),
         "baseline": metrics(y_test, baseline.predict(x_test)),
+        "rules_pred": metrics(y_test, rule_predictions)
     }
 
     # Varje körning tränar på nytt. Prediktionsskriptet behöver bara modellfilen.
